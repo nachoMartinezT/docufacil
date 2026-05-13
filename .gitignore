@@ -1,0 +1,28 @@
+# General
+.DS_Store
+.env
+.env.local
+.env.*.local
+*.log
+
+# Dependencies
+node_modules/
+
+# Docker
+.dockerignore
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# Build outputs
+dist/
+build/

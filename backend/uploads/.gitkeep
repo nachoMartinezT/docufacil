@@ -1,0 +1,3 @@
+# This directory stores uploaded files
+# Each month has its own subdirectory (e.g., uploads/2026-01/)
+# Do not commit actual uploaded files to git
