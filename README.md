@@ -100,7 +100,7 @@ docker-compose up -d --build
 ```
 
 La aplicación estará disponible en:
-- **Frontend**: http://localhost:8080
+- **Frontend**: http://localhost:5000
 - **Backend API**: http://localhost:3001
 
 ## 🧑‍💻 Desarrollo
