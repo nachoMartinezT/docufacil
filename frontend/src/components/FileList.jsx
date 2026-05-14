@@ -28,7 +28,8 @@ import {
 } from 'lucide-react';
 import axios from 'axios';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+// Use relative API URL for Docker deployment with nginx proxy
+const API_BASE = '/api';
 
 // Sortable Item Component
 function SortableFileItem({ file, onDelete, onPreview, deleting, formatDate, formatFileSize, getFileIcon }) {
@@ -186,7 +187,7 @@ function FileList({ files, loading, year, month, onDeleteSuccess }) {
       }));
 
       await axios.post(
-        `${API_URL}/api/files/reorder/${year}/${month}`,
+        `${API_BASE}/files/reorder/${year}/${month}`,
         { order: orderedIds }
       );
     } catch (error) {
@@ -203,7 +204,7 @@ function FileList({ files, loading, year, month, onDeleteSuccess }) {
     setDeleting(filename);
     try {
       await axios.delete(
-        `${API_URL}/api/files/${year}/${month}/${filename}`
+        `${API_BASE}/files/${year}/${month}/${filename}`
       );
       onDeleteSuccess();
     } catch (error) {
@@ -220,7 +221,7 @@ function FileList({ files, loading, year, month, onDeleteSuccess }) {
     try {
       // Fetch the file with axios (includes JWT token)
       const response = await axios.get(
-        `${API_URL}/api/files/preview/${year}/${month}/${file.storedName}`,
+        `${API_BASE}/files/preview/${year}/${month}/${file.storedName}`,
         {
           responseType: 'blob'
         }

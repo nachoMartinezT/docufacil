@@ -7,7 +7,8 @@ import GenerateButton from '../components/GenerateButton';
 import { LogOut, FileText, User, Calendar } from 'lucide-react';
 import axios from 'axios';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+// Use relative API URL for Docker deployment with nginx proxy
+const API_BASE = '/api';
 
 function Dashboard() {
   const { user, logout } = useAuth();
@@ -25,7 +26,7 @@ function Dashboard() {
     setLoading(true);
     try {
       const response = await axios.get(
-        `${API_URL}/api/files/${selectedDate.year}/${selectedDate.month}`
+        `${API_BASE}/files/${selectedDate.year}/${selectedDate.month}`
       );
       setFiles(response.data);
     } catch (error) {

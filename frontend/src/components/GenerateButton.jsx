@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { FileDown, Loader2, CheckCircle } from 'lucide-react';
 import axios from 'axios';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+// Use relative API URL for Docker deployment with nginx proxy
+const API_BASE = '/api';
 
 function GenerateButton({ year, month, fileCount }) {
   const [generating, setGenerating] = useState(false);
@@ -19,7 +20,7 @@ function GenerateButton({ year, month, fileCount }) {
 
     try {
       const response = await axios.post(
-        `${API_URL}/api/files/generate-pdf/${year}/${month}`,
+        `${API_BASE}/files/generate-pdf/${year}/${month}`,
         { sortBy: 'custom' },
         {
           responseType: 'blob'

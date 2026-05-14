@@ -2,7 +2,8 @@ import React, { useState, useRef, useCallback } from 'react';
 import { Upload, Camera, X, File, Check, Loader2 } from 'lucide-react';
 import axios from 'axios';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+// Use relative API URL for Docker deployment with nginx proxy
+const API_BASE = '/api';
 
 function FileUploader({ year, month, onUploadSuccess }) {
   const [isDragging, setIsDragging] = useState(false);
@@ -84,7 +85,7 @@ function FileUploader({ year, month, onUploadSuccess }) {
       formData.append('names', JSON.stringify(names));
 
       await axios.post(
-        `${API_URL}/api/files/upload/${year}/${month}`,
+        `${API_BASE}/files/upload/${year}/${month}`,
         formData,
         {
           headers: {
